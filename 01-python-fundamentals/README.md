@@ -1,65 +1,48 @@
 # 01 — Python Fundamentals
 
-This module assumes no prior AI knowledge. Type the examples into Python files, run them, compare the output, and modify them.
+Type examples yourself, run them, compare output, then change one thing at a time.
 
-## 1. Run Python
-
-From the repository root:
-```powershell
-python --version
-python .\01-python-fundamentals\agent.py
-```
-On Linux use `python3 --version`; when your virtual environment is activated, `python` should refer to that environment.
-
-## 2. Variables and data types
+## 1. Variables and types
 
 ```python
 service = "jenkins"
 retry_count = 3
 pipeline_ok = False
-latency_seconds = 2.4
-print(service, retry_count, pipeline_ok, latency_seconds)
+print(service, retry_count, pipeline_ok)
 print(type(retry_count).__name__)
 ```
-Expected output:
+Output:
 ```text
-jenkins 3 False 2.4
+jenkins 3 False
 int
 ```
 
-## 3. Strings and normalization
+## 2. Strings
 
 ```python
 message = "ERROR: Connection TIMEOUT"
 print(message.lower())
 print("timeout" in message.lower())
-print(message.startswith("ERROR"))
 ```
-Expected output:
+Output:
 ```text
 error: connection timeout
 True
-True
 ```
-Normalize case before matching log patterns so uppercase and lowercase variations work.
+Use normalization for case-insensitive matching.
 
-## 4. Lists and dictionaries
+## 3. Lists and dictionaries
 
 ```python
 services = ["jenkins", "docker", "kubernetes"]
-incident = {"service": "jenkins", "status": "failed", "attempt": 2}
+incident = {"service": "jenkins", "status": "failed"}
 print(services[0])
 print(incident["status"])
 print(incident.get("owner", "unassigned"))
 ```
-Expected output:
-```text
-jenkins
-failed
-unassigned
-```
+Output: `jenkins`, `failed`, `unassigned` on separate lines.
 
-## 5. Conditions: if / elif / else
+## 4. if / elif / else
 
 ```python
 log = "Connection timeout".lower()
@@ -70,25 +53,24 @@ elif "null pointer" in log:
 else:
     print("Collect more evidence.")
 ```
-Expected output: `Check network latency and server health.`
+Output: `Check network latency and server health.`
 
-Only the first matching branch executes. Try changing `log` to `Null pointer exception` and then to `Disk quota exceeded`.
+Change the log to `Null pointer exception`, then `Disk quota exceeded`, and observe which branch runs.
 
-## 6. Loops
+## 5. Loops
 
 ```python
-errors = ["timeout", "disk full", "timeout"]
-for error in errors:
+for error in ["timeout", "disk full", "timeout"]:
     print("Investigating:", error)
 ```
-Expected output:
+Output:
 ```text
 Investigating: timeout
 Investigating: disk full
 Investigating: timeout
 ```
 
-## 7. Functions, parameters, and return values
+## 6. Functions and return values
 
 ```python
 def classify(logs):
@@ -99,53 +81,46 @@ def classify(logs):
         return "NULL_POINTER"
     return "UNKNOWN"
 
-print(classify("Jenkins TIMEOUT"))
-print(classify("Null pointer exception"))
-print(classify("Disk full"))
+for sample in ["Jenkins TIMEOUT", "Null pointer exception", "Disk full"]:
+    print(classify(sample))
 ```
-Expected output:
+Output:
 ```text
 TIMEOUT
 NULL_POINTER
 UNKNOWN
 ```
-A parameter receives input; `return` sends a value back to the caller. `print` displays information but does not replace a return value.
+Parameters receive input. `return` gives a value to the caller; `print` displays information.
 
-## 8. Exceptions and safe file reading
+## 7. Exceptions
 
 ```python
 from pathlib import Path
-
-path = Path("sample.log")
 try:
-    text = path.read_text(encoding="utf-8")
+    text = Path("sample.log").read_text(encoding="utf-8")
 except FileNotFoundError:
     print("Log file not found; check the path.")
 else:
     print("Read", len(text), "characters")
 ```
-If `sample.log` is absent, expected output is `Log file not found; check the path.`. Never assume files or log content exist.
+If the file is absent, output is `Log file not found; check the path.`.
 
-## 9. Unit testing
+## 8. Run examples and tests
 
-Run from repository root:
+Run `python examples.py` from this folder. From repository root, run:
 ```powershell
 python -m unittest discover -s .\07-devops-ai-project\tests -v
 ```
-Expected output includes tests marked `ok` and `OK` at the end, provided all tests pass.
 
 ## Exercises
-
-1. Add a `"permission denied"` category.
-2. Make matching case-insensitive.
-3. Create a function that returns a recommendation instead of printing it.
-4. Add tests for empty strings and unknown errors.
-5. Explain the difference between a syntax error and an exception.
+1. Add a `permission denied` category.
+2. Add tests for empty and unknown logs.
+3. Return a recommendation instead of printing it.
+4. Explain syntax errors versus runtime exceptions.
 
 ## Interview questions
-
-- What are lists versus dictionaries?
-- What is the difference between `print` and `return`?
+- List versus dictionary?
+- `print` versus `return`?
 - How do `if`, `elif`, and `else` work?
-- Why use exceptions when reading logs?
-- What is a unit test, and what does an assertion verify?
+- Why use exception handling for files?
+- What does a unit test assert?

@@ -1,4 +1,4 @@
-"""Introductory retrieval examples using only the Python standard library."""
+"""Introductory retrieval examples using the Python standard library."""
 
 
 RUNBOOKS = [

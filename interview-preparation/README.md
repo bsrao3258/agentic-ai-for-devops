@@ -1,34 +1,51 @@
 # Interview Preparation — Agentic AI for DevOps
 
-Use this folder to maintain concise explanations, diagrams, project stories, and practice questions. Add answers only when you can explain them in your own words.
+Use this as a revision checklist. Practice answers aloud in your own words and connect them to repository code. Do not claim production experience or metrics you have not achieved.
 
 ## Python
-1. Explain functions, parameters, return values, and exceptions.
-2. How would you test log classification?
-3. Why use modules and reusable functions?
+1. Explain functions, parameters, return values, collections, exceptions, and modules.
+2. What is the difference between `print` and `return`?
+3. How would you unit-test a log classifier?
+4. How do virtual environments and dependency files improve reproducibility?
 
-## LLMs and Agents
-1. What is an LLM, and what are its limitations?
-2. What distinguishes an AI agent from a fixed rule-based script?
-3. How does tool calling work?
-4. How do you validate model-generated output?
+## LLMs
+1. What is an LLM? What are tokens and context windows?
+2. What are hallucinations, and how do you reduce their impact?
+3. How do you validate structured output?
+4. What log data should be redacted before model use?
 
-## RAG and MCP
-1. Explain the RAG pipeline from ingestion to generation.
-2. What are embeddings and vector databases?
-3. What are MCP clients, servers, and tools?
-4. How would you secure access to DevOps tools?
+## Agents and tools
+1. What makes an agent different from a fixed rule-based program?
+2. Explain the observe/decide/tool/result loop.
+3. How do you limit tool access and prevent arbitrary shell execution?
+4. When must an agent ask for human approval?
+
+## RAG
+1. Explain ingestion, chunking, embeddings, retrieval, generation, and citations.
+2. How do you evaluate retrieval relevance?
+3. What is the difference between RAG and fine-tuning?
+4. How do you defend against instructions embedded in retrieved documents?
+
+## MCP
+1. Explain MCP host, client, server, tools, and resources.
+2. Why use a standard protocol instead of bespoke integrations?
+3. How do you secure tool inputs, credentials, and outputs?
+4. Which operations should remain read-only?
 
 ## Multi-agent systems
-1. When would you use multiple agents?
-2. How do you manage state and handoffs?
-3. How do you handle failed tools or conflicting results?
+1. When does multi-agent orchestration add value?
+2. How do agents hand off state?
+3. How do you stop loops and handle contradictory results?
+4. What are latency, cost, and reliability trade-offs?
 
-## DevOps safety
-1. How should an agent investigate a failed CI/CD pipeline?
-2. Why require human approval before applying a fix?
-3. How do you protect secrets in logs?
-4. How would you audit an automated remediation?
+## DevOps scenarios
+1. A Jenkins pipeline times out. What evidence do you gather first?
+2. A Kubernetes pod restarts repeatedly. Which read-only checks are safe?
+3. A proposed fix is known but could affect production. How do you get approval?
+4. How do you audit a recommendation and remediation?
 
 ## Project storytelling
-For each project milestone, document the problem, architecture, your contribution, testing, security controls, trade-offs, and measurable results. Do not claim production impact or experience you have not actually achieved.
+Use this structure: problem → constraints → architecture → implementation → tests → safety → limitations → next steps. Distinguish completed functionality from planned work.
+
+## Practice task
+Explain how this repository progresses from a keyword-based Python classifier to an LLM-powered agent that uses approved runbooks and read-only MCP tools. Explicitly state which components are currently implemented and which remain future work.

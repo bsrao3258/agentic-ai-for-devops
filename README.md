@@ -2,6 +2,42 @@
 
 A hands-on learning and portfolio project exploring Python, LLMs, AI agents, retrieval-augmented generation (RAG), Model Context Protocol (MCP), and multi-agent systems for practical DevOps troubleshooting.
 
+## Learning Path
+
+Follow the folders in numerical order:
+
+| Order | Directory | Purpose |
+|---|---|---|
+| 00 | [Environment Setup](00-environment-setup/README.md) | Prepare Python `.venv` on Windows/Linux and connect it to VS Code |
+| 01 | [Python Fundamentals](01-python-fundamentals/README.md) | Python basics and first log analyzer |
+| 02 | [LLM Fundamentals](02-llm-fundamentals/README.md) | Prompting and LLM concepts |
+| 03 | [AI Agents](03-ai-agents/README.md) | Agent decision flow and human approval |
+| 04 | [RAG](04-rag/README.md) | Starter knowledge retrieval; later embeddings and vector search |
+| 05 | [MCP](05-mcp/README.md) | Model Context Protocol learning module |
+| 06 | [Multi-Agent Systems](06-multi-agent-systems/README.md) | Separate investigation and recommendation roles |
+| 07 | [DevOps AI Project](07-devops-ai-project/README.md) | Practical log analyzer and tests |
+| — | [Interview Preparation](interview-preparation/README.md) | Interview questions, answers, and revision notes |
+
+## Quick Start
+
+First, follow the complete [Environment Setup guide](00-environment-setup/README.md). It covers Windows PowerShell, Linux, creating and activating a virtual environment, selecting the interpreter in VS Code, and running the starter exercises.
+
+After cloning the repository and creating your environment, run these commands from the repository root.
+
+### Windows PowerShell
+
+```powershell
+python .\01-python-fundamentals\agent.py
+python -m unittest discover -s .\07-devops-ai-project\tests -v
+```
+
+### Linux
+
+```bash
+python ./01-python-fundamentals/agent.py
+python -m unittest discover -s ./07-devops-ai-project/tests -v
+```
+
 ## Objectives
 
 - Build a strong foundation in Python and LLM concepts.
@@ -11,45 +47,18 @@ A hands-on learning and portfolio project exploring Python, LLMs, AI agents, ret
 - Apply tests, auditability, and human approval before changes.
 - Prepare for Agentic AI and DevOps interviews with practical examples.
 
-## Repository Structure
-
-| Directory | Purpose |
-|---|---|
-| `01-python-fundamentals/` | Python basics and first log analyzer |
-| `02-llm-fundamentals/` | Prompting and LLM concepts |
-| `03-ai-agents/` | Agent decision flow and human approval |
-| `04-rag/` | Starter knowledge retrieval; later embeddings and vector search |
-| `05-mcp/` | Model Context Protocol learning module |
-| `06-multi-agent-systems/` | Separate investigation and recommendation roles |
-| `07-devops-ai-project/` | Practical log analyzer and tests |
-| `interview-preparation/` | Interview questions, answers, and revision notes |
-
-## Getting Started
-
-Requirements: Python 3.10+ recommended, Git, and optionally Visual Studio Code.
-
-Run the first exercise from the repository root:
-
-```powershell
-python .\01-python-fundamentals\agent.py
-```
-
-Run the project tests:
-
-```powershell
-python -m unittest discover -s .\07-devops-ai-project\tests -v
-```
-
 ## Safety Principles
 
 - Analyze logs before proposing a fix.
 - Require explicit human approval before making changes.
 - Do not expose API keys, passwords, tokens, kubeconfig files, or sensitive production logs.
 - Test proposed changes before production deployment.
+- Keep `.venv` and local secrets out of Git; see [`.gitignore`](.gitignore).
 
 ## Learning Status
 
-- [x] Rule-based timeout and null-pointer detection
+- [x] Initial rule-based timeout and null-pointer detection
+- [x] Local environment setup guide for Windows, Linux, and VS Code
 - [ ] LLM-powered troubleshooting
 - [ ] Agent tool calling
 - [ ] RAG with embeddings and a vector store
@@ -57,4 +66,4 @@ python -m unittest discover -s .\07-devops-ai-project\tests -v
 - [ ] Multi-agent orchestration
 - [ ] End-to-end DevOps AI project
 
-This repository will evolve as each module is studied, implemented, tested, and documented. Starter examples in this initial commit are educational demonstrations; rule-based functions are not yet full LLM-powered agents.
+This repository will evolve as each module is studied, implemented, tested, and documented. Starter examples are educational demonstrations; rule-based functions are not yet full LLM-powered agents.

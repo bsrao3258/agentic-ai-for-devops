@@ -7,14 +7,14 @@ A hands-on, beginner-friendly course and portfolio. Each module includes concept
 | Module | What you will build |
 |---|---|
 | [00 — Environment Setup](00-environment-setup/README.md) | Python, virtual environments, VS Code, and Git on Windows/Linux |
-| [01 — Python Fundamentals](01-python-fundamentals/README.md) | Variables, strings, collections, conditions, loops, functions, files, exceptions, and tests |
-| [02 — LLM Fundamentals](02-llm-fundamentals/README.md) | Prompt design, model limits, and safe LLM integration concepts |
-| [03 — AI Agents](03-ai-agents/README.md) | Agent loop, tools, state, approval gates, and error handling |
-| [04 — RAG](04-rag/README.md) | Knowledge ingestion, retrieval, grounding, and vector-search concepts |
-| [05 — MCP](05-mcp/README.md) | MCP client/server concepts and a local tool server |
-| [06 — Multi-Agent Systems](06-multi-agent-systems/README.md) | Specialist roles, handoffs, coordination, and failure handling |
-| [07 — End-to-End DevOps Project](07-devops-ai-project/README.md) | Tested log troubleshooting assistant with safety controls |
-| [Interview Preparation](interview-preparation/README.md) | Concept and scenario questions |
+| [01 — Python Fundamentals](01-python-fundamentals/README.md) · [Code walkthrough](01-python-fundamentals/CODE_WALKTHROUGH.md) | Variables, strings, collections, conditions, loops, functions, files, exceptions, and tests |
+| [02 — LLM Fundamentals](02-llm-fundamentals/README.md) · [Code walkthrough](02-llm-fundamentals/CODE_WALKTHROUGH.md) | Prompt design, model limits, and safe LLM integration concepts |
+| [03 — AI Agents](03-ai-agents/README.md) · [Code walkthrough](03-ai-agents/CODE_WALKTHROUGH.md) | Agent loop, tools, state, approval gates, and error handling |
+| [04 — RAG](04-rag/README.md) · [Code walkthrough](04-rag/CODE_WALKTHROUGH.md) | Knowledge ingestion, retrieval, grounding, and vector-search concepts |
+| [05 — MCP](05-mcp/README.md) · [Code walkthrough](05-mcp/CODE_WALKTHROUGH.md) | MCP client/server concepts and a local tool server |
+| [06 — Multi-Agent Systems](06-multi-agent-systems/README.md) · [Code walkthrough](06-multi-agent-systems/CODE_WALKTHROUGH.md) | Specialist roles, handoffs, coordination, and failure handling |
+| [07 — End-to-End DevOps Project](07-devops-ai-project/README.md) · [Code walkthrough](07-devops-ai-project/CODE_WALKTHROUGH.md) | Tested log troubleshooting assistant with safety controls |
+| [Interview Preparation](interview-preparation/README.md) · [Code walkthrough](interview-preparation/CODE_WALKTHROUGH.md) | Concept and scenario questions |
 
 ## Start here
 

@@ -1,51 +1,46 @@
 # 02 — LLM Fundamentals
 
 ## Learning goals
-Understand what an LLM does, how prompts influence output, why responses can be wrong, and how to validate answers before using them in DevOps.
+Understand LLMs, prompts, context limits, hallucinations, and output validation before using models in DevOps.
 
-## 1. What is an LLM?
-A large language model predicts and generates text based on its learned patterns and current context. It does not automatically know your live infrastructure, and it can produce plausible but incorrect answers.
+## What is an LLM?
+A large language model generates text from learned patterns and current context. It does not automatically know your live infrastructure and can produce plausible but incorrect answers.
 
-## 2. Build a prompt
+## Build a prompt
 
 ```python
 def build_prompt(logs):
     return f"""You are a cautious DevOps assistant.
-Analyze the sanitized log below.
-Return: likely issue, evidence, safe read-only checks, and uncertainty.
-Do not claim to have run commands. Do not apply fixes.
+Analyze the sanitized log. Return observed evidence, likely causes,
+safe read-only checks, and uncertainty. Do not execute commands.
 LOG:
 {logs}
 """
 
 print(build_prompt("Jenkins: connection timeout"))
 ```
-Expected output begins with `You are a cautious DevOps assistant.` and includes the supplied log. This prints a prompt; it does not call a model.
+Output starts with `You are a cautious DevOps assistant.` and includes the supplied log. This only prints a prompt; it does not call a model.
 
-## 3. Prompting examples
+## Prompt patterns
 - Weak: "Fix this."
-- Better: "Analyze this sanitized Jenkins timeout. List evidence, likely causes, read-only checks, and what remains uncertain. Do not change systems."
-- For structured output, request fields such as `summary`, `evidence`, `checks`, and `confidence`; validate the result in Python rather than trusting free text blindly.
+- Better: "Analyze this sanitized Jenkins timeout. Separate evidence from hypotheses, list safe read-only checks, and do not change systems."
+- For structured output, request fields such as `summary`, `evidence`, `checks`, and `confidence`, then validate the schema in code.
 
-## 4. Token/context and hallucinations
-Models have context limits. Very long logs should be filtered, summarized carefully, or retrieved in relevant chunks. A hallucination is a generated claim that is not supported by evidence. Ask the model to distinguish observed log facts from hypotheses.
+## Tokens, context, and hallucinations
+Long logs may exceed model context limits. Filter or retrieve relevant sections carefully. A hallucination is a claim not supported by evidence. Ask the model to distinguish facts from hypotheses.
 
-## 5. Safe integration pattern
-1. Remove secrets and personal data from logs.
-2. Send only the necessary context to an approved model endpoint.
-3. Validate the returned schema and allowed actions.
-4. Show the recommendation to the user.
-5. Require human approval before changes.
+## Safe integration
+1. Redact secrets and personal data.
+2. Send only necessary context to an approved model.
+3. Validate returned structure and allowed actions.
+4. Show recommendations to the user.
+5. Require approval before state-changing operations.
 
 ## Exercises
-1. Add a prompt for a Kubernetes CrashLoopBackOff.
-2. Ask for evidence separately from hypotheses.
-3. Define a JSON schema for a recommendation.
-4. List three cases where the model should say it does not know.
+1. Write a prompt for Kubernetes CrashLoopBackOff.
+2. Request evidence separately from hypotheses.
+3. Design a JSON schema for recommendations.
+4. List cases where the model should say it does not know.
 
 ## Interview questions
-- What is an LLM and what are its limitations?
-- What is a token and context window?
-- How do you reduce hallucinations?
-- Why should model output be validated?
-- What sensitive data must not be sent in logs?
+What is an LLM? What are tokens and context windows? How can hallucinations be mitigated? Why validate model output? What sensitive data should be removed from logs?

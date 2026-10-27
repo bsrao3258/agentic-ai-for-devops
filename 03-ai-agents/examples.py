@@ -1,4 +1,4 @@
-"""Small, deterministic examples of agent building blocks."""
+"""Deterministic examples of agent building blocks."""
 
 
 def inspect_log(logs: str) -> dict:

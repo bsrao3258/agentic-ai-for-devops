@@ -1,59 +1,45 @@
 # 03 — Build Your First DevOps Agent
 
 ## What is an agent?
-An AI agent typically combines a goal, model-driven reasoning, state/context, and tools that can observe or act on an environment. A fixed `if/elif` script is useful groundwork but is not by itself a full LLM-powered agent.
+An AI agent typically combines a goal, model-driven reasoning, state/context, and tools that observe or act on an environment. A fixed `if/elif` script is useful groundwork but is not by itself a full LLM-powered agent.
 
-## 1. Start with a deterministic workflow
-The existing `devops_agent.py` classifies a log and prints a recommendation. It does not call an LLM or change infrastructure.
+## 1. Deterministic workflow
+The existing `devops_agent.py` classifies logs and prints recommendations. It does not call an LLM or change infrastructure.
 
 ## 2. Agent loop concept
-A common controlled loop is: receive task → inspect evidence → choose an allowed tool → validate result → update state → stop or ask for help. Put maximum step limits and timeouts around loops.
+Receive task → inspect evidence → choose an allowed tool → validate result → update state → stop or ask for help. Add step limits and timeouts to prevent runaway loops.
 
-## 3. Tool example (safe local function)
-
+## 3. Safe local tool example
 ```python
 def inspect_log(logs):
-    """A local read-only tool over supplied text."""
     return {"contains_timeout": "timeout" in logs.lower()}
 
-result = inspect_log("Jenkins connection timeout")
-print(result)
+print(inspect_log("Jenkins connection timeout"))
 ```
-Expected output: `{'contains_timeout': True}`
+Output: `{'contains_timeout': True}`. This is a local function, not a model tool call by itself.
 
-A real agent could choose this tool through model tool-calling, but the function itself is not an LLM agent.
-
-## 4. Approval gate example
-
+## 4. Human approval example
 ```python
-def propose_action(action: str, approved: bool) -> str:
+def propose_action(action, approved):
     if not approved:
         return f"Approval required before: {action}"
     return f"Approved for execution: {action}"
 
-print(propose_action("restart staging service", approved=False))
+print(propose_action("restart staging service", False))
 ```
-Expected output: `Approval required before: restart staging service`
+Output: `Approval required before: restart staging service`.
 
-In production, approval must be tied to the exact action, target, parameters, identity, and expiration. A printed message is not a security control.
+A production approval must bind to the exact action, target, parameters, approver, and time. A printed message alone is not a security control.
 
-## 5. Design rules
-- Start with read-only tools.
-- Use allowlists and validate arguments.
+## Design rules
+- Start with read-only tools and allowlists.
 - Never expose unrestricted shell access to a model.
-- Require approval for restarts, deployments, rollbacks, or other state changes.
-- Log tool name, arguments (redacted), result, approver, and timestamp.
-- Set timeouts, retry limits, and a maximum number of agent steps.
+- Require approval for restarts, deployments, rollbacks, and other state changes.
+- Redact secrets from logs and audit records.
+- Add timeouts, retry limits, and a maximum number of steps.
 
 ## Exercises
-1. Add a disk-space classification.
-2. Return structured dictionaries rather than printing.
-3. Add an approval function and test both approved and rejected cases.
-4. Define a maximum of three tool calls.
-5. Explain what the agent must do when no known solution is found.
+Add disk-space classification; return structured dictionaries; test approved and rejected paths; define a maximum of three tool calls.
 
 ## Interview questions
-- How is an agent different from a chatbot or rule-based script?
-- What is a tool call?
-- How do you prevent an agent from taking dangerous actions?
-- Why are timeouts and step limits important?
+How is an agent different from a rule-based script? What is tool calling? How do you prevent dangerous actions? Why are timeouts and step limits important?

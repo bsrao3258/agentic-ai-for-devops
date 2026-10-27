@@ -1,4 +1,4 @@
-"""Prompt-design examples. These examples do not call an LLM API."""
+"""Prompt design examples; these do not call an LLM API."""
 
 
 def prompt_for_ci_failure(logs: str) -> str:

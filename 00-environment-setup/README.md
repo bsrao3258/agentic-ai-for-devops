@@ -197,3 +197,28 @@ Commit source code and documentation, not the virtual environment, API keys, pas
 - [ ] VS Code opened at the repository root
 - [ ] VS Code interpreter points to `.venv`
 - [ ] First script and unit tests run successfully
+
+## Additional example: verify your Python environment
+
+Run from the repository root:
+
+```powershell
+python .\00-environment-setup\environment_check.py
+```
+
+Linux:
+
+```bash
+python ./00-environment-setup/environment_check.py
+```
+
+Expected output will resemble:
+
+```text
+Python version: 3.x.x
+Operating system: Windows
+Python executable: python.exe
+Virtual environment active: False
+```
+
+Your Python version and operating system will differ. If you run it from the activated project virtual environment, `Virtual environment active` should normally be `True`. This script checks the current interpreter; it does not install or modify anything.

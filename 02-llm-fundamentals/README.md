@@ -62,3 +62,17 @@ python ./02-llm-fundamentals/prompt_patterns.py
 The output prints two prompts: one for summarizing an incident and one requesting a structured JSON response. The script does **not** call an LLM API. Its purpose is to help you inspect and compare prompt wording before connecting an approved model.
 
 [Open the example code](prompt_patterns.py).
+
+## Visual: a safe LLM request
+
+A prompt is only the request. Real integrations must also sanitize inputs and validate model output.
+
+```mermaid
+flowchart TD
+    A[Sanitized incident data] --> B[Clear prompt and task]
+    B --> C[Approved LLM]
+    C --> D[Model response]
+    D --> E[Validate structure and evidence]
+    E --> F[Show recommendation to human]
+    F --> G[Approval before any state change]
+```

@@ -1,5 +1,8 @@
 # 01 — Python Fundamentals
 
+![Python code displayed on a computer screen](https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=80)
+
+
 Welcome! This module is the starting point for learners who are new to Python. Read the full **[Core Python Curriculum](CORE_PYTHON_CURRICULUM.md)** before moving to LLMs and agents.
 
 ## Recommended order

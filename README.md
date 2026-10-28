@@ -78,3 +78,7 @@ Each learning folder now has another focused example alongside its existing star
 - [Interview scenario drills](interview-preparation/scenario_drills.py)
 
 Each module README links to its additional example and explains how to run it or what to expect. The MCP server example requires the MCP SDK and an MCP-compatible client; it uses synthetic data and does not contact real infrastructure.
+
+## 08 — K-Agent: Kubernetes health and troubleshooting
+
+[Open the K-Agent module](08-k-agent/README.md) — Kubernetes resource inventory, Pod logs and warning-event analysis, conservative known-solution guidance, exact human approval before supported workload restarts, and unit tests. This is an educational first version; CRD instances and every API type are not automatically understood, and live-cluster testing is still required.

@@ -96,3 +96,19 @@ Execution performed: False
 
 This example processes several sanitized sample log lines and returns recommendations only. It does not execute commands or change infrastructure.
 [Open the example code](incident_triage_example.py).
+
+## Visual: target troubleshooting architecture
+
+The classifier and sample triage scripts are implemented. Live integrations and a sandboxed executor are future work.
+
+```mermaid
+flowchart TD
+    A[Sanitized CI/CD logs] --> B[Classifier]
+    B --> C[Evidence and incident category]
+    C --> D[Approved runbook retrieval]
+    D --> E[Recommendation]
+    E --> F[Human approval gate]
+    F -->|Approved| G[Future allowlisted sandbox executor]
+    F -->|Rejected| H[Stop and record decision]
+    G --> I[Audit and verification]
+```

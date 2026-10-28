@@ -26,3 +26,21 @@ Add a researcher role; reject unsupported recommendations; limit handoffs; test 
 
 ## Interview questions
 When do multi-agent systems help? How is state shared? How do you prevent loops? What are latency and cost trade-offs?
+
+## Additional example: multi-agent pipeline with unknown cases
+
+Run from the repository root:
+
+```powershell
+python .\06-multi-agent-systems\multi_agent_pipeline_example.py
+```
+
+Linux:
+
+```bash
+python ./06-multi-agent-systems/multi_agent_pipeline_example.py
+```
+
+The script prints three triage dictionaries: timeout, disk-full, and unknown error. Each result includes evidence, a recommendation, a confidence note, and `approval_required: True`. The unknown case explicitly notes insufficient evidence. These are Python functions simulating specialist roles, not independent LLM agents.
+
+[Open the example code](multi_agent_pipeline_example.py).

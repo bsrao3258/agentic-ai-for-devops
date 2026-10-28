@@ -1,0 +1,24 @@
+name: K-Agent unit tests
+
+on:
+  push:
+    paths:
+      - "08-k-agent/**"
+      - ".github/workflows/k-agent-tests.yml"
+  pull_request:
+    paths:
+      - "08-k-agent/**"
+      - ".github/workflows/k-agent-tests.yml"
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run K-Agent unit tests
+        run: python -m unittest discover -s 08-k-agent -v

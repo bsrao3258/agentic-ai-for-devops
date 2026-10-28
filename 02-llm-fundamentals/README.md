@@ -1,5 +1,8 @@
 # 02 — LLM Fundamentals
 
+![Artificial intelligence concept illustration](https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80)
+
+
 ## Learning goals
 Understand LLMs, prompts, context limits, hallucinations, and output validation before using models in DevOps.
 

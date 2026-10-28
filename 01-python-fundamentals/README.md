@@ -6,6 +6,7 @@ Welcome! This module is the starting point for learners who are new to Python. R
 
 1. [Core Python Curriculum](CORE_PYTHON_CURRICULUM.md) — plain-English explanations, multiple examples per concept, expected outputs, exercises, and interview checkpoints.
 2. [Runnable examples](examples_with_output.py) — one script that demonstrates the concepts in your local terminal.
+3. [Expected output](EXPECTED_OUTPUT.md) — compare the output section by section.
 3. [Starter examples](examples.py) — small exercises for classification and recommendations.
 4. [Line-by-line code walkthrough](CODE_WALKTHROUGH.md) — explain each line of the existing starter code.
 5. Complete the exercises at the end of the curriculum; do not skip straight to agent frameworks.

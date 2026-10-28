@@ -61,3 +61,18 @@ RB-101 (approved=True): Check DNS, network path, and upstream health.
 The example filters out unapproved documents and documents for other services before keyword matching. This is still simple tag/keyword retrieval, not embedding-based vector search.
 
 [Open the example code](metadata_filter_retrieval.py).
+
+## Visual: RAG pipeline
+
+The current starter demonstrates keyword retrieval; embeddings and vector storage are roadmap concepts, not yet implemented here.
+
+```mermaid
+flowchart LR
+    A[Approved documents] --> B[Clean and chunk]
+    B --> C[Create embeddings]
+    C --> D[Store vectors and metadata]
+    Q[User question] --> R[Retrieve relevant chunks]
+    D --> R
+    R --> S[LLM receives grounded context]
+    S --> T[Answer with source references]
+```

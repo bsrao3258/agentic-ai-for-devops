@@ -44,3 +44,21 @@ Long logs may exceed model context limits. Filter or retrieve relevant sections 
 
 ## Interview questions
 What is an LLM? What are tokens and context windows? How can hallucinations be mitigated? Why validate model output? What sensitive data should be removed from logs?
+
+## Additional example: prompt patterns
+
+Run from the repository root:
+
+```powershell
+python .\02-llm-fundamentals\prompt_patterns.py
+```
+
+Linux:
+
+```bash
+python ./02-llm-fundamentals/prompt_patterns.py
+```
+
+The output prints two prompts: one for summarizing an incident and one requesting a structured JSON response. The script does **not** call an LLM API. Its purpose is to help you inspect and compare prompt wording before connecting an approved model.
+
+[Open the example code](prompt_patterns.py).

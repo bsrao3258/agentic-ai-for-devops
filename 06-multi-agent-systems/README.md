@@ -44,3 +44,18 @@ python ./06-multi-agent-systems/multi_agent_pipeline_example.py
 The script prints three triage dictionaries: timeout, disk-full, and unknown error. Each result includes evidence, a recommendation, a confidence note, and `approval_required: True`. The unknown case explicitly notes insufficient evidence. These are Python functions simulating specialist roles, not independent LLM agents.
 
 [Open the example code](multi_agent_pipeline_example.py).
+
+## Visual: specialist roles and review
+
+Specialist roles separate responsibilities; the code in this folder simulates the roles with deterministic functions.
+
+```mermaid
+flowchart TD
+    A[Incident logs] --> B[Investigator]
+    B --> C[Runbook researcher]
+    C --> D[Reviewer checks evidence]
+    D --> E{Supported?}
+    E -- No --> F[Ask for more evidence]
+    E -- Yes --> G[Present recommendation]
+    G --> H[Human approval before remediation]
+```

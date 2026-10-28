@@ -4,7 +4,7 @@
 
 > Goal: evolve K-Agent from a resource checker into a careful incident-investigation assistant that correlates evidence, explains uncertainty, consults runbooks, and proposes controlled actions.
 
-This module contains a roadmap and a small, runnable **offline correlation prototype**. It does not connect to a cluster, call an LLM, or change infrastructure. Learn and test decision logic before adding privileged integrations.
+This module contains a roadmap and a small, runnable **offline correlation prototype**. It does not connect to a cluster, call an LLM, or change infrastructure. Learn and test decision logic before adding privileged integrations. For a plain-English, line-by-line explanation, open the [Code Walkthrough](CODE_WALKTHROUGH.md).
 
 ## Advanced capabilities roadmap
 

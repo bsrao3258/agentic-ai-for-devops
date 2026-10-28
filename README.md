@@ -23,6 +23,7 @@ A hands-on, beginner-friendly course and portfolio. The goal is to take a learne
 | [06 — Multi-Agent Systems](06-multi-agent-systems/README.md) | Specialist roles, handoffs, coordination, and failure handling |
 | [07 — End-to-End DevOps Project](07-devops-ai-project/README.md) | Tested log troubleshooting assistant with safety controls |
 | [Interview Preparation](interview-preparation/README.md) | Core Python, LLM, agent, RAG, MCP, multi-agent, and DevOps scenario questions |
+| [08 — K-Agent](08-k-agent/README.md) | Kubernetes health inventory, warning events and logs, known-remedy guidance, exact human approval before supported restarts, and unit tests |
 
 ## Run your first examples
 

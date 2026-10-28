@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -47,10 +48,24 @@ def _get(obj: Any, *path: str, default: Any = None) -> Any:
         if value is None:
             return default
         if isinstance(value, dict):
-            value = value.get(part)
+            # Kubernetes API dictionaries use camelCase while client models use snake_case.
+            camel = part.split("_")[0] + "".join(piece.title() for piece in part.split("_")[1:])
+            value = value.get(part, value.get(camel))
         else:
             value = getattr(value, part, None)
     return default if value is None else value
+
+
+def _redact(text: str) -> str:
+    """Mask common secret patterns before logs are printed or serialized."""
+    patterns = [
+        (r"(?i)(authorization\\s*[:=]\\s*bearer\\s+)\\S+", r"\\1[REDACTED]"),
+        (r"(?i)((?:password|passwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token)\\s*[:=]\\s*)[^\\s,;]+", r"\\1[REDACTED]"),
+        (r"(?i)(AKIA[0-9A-Z]{16})", "[REDACTED_AWS_ACCESS_KEY]"),
+    ]
+    for pattern, replacement in patterns:
+        text = re.sub(pattern, replacement, text)
+    return text
 
 
 def _name(obj: Any) -> str:
@@ -379,7 +394,7 @@ class KAgent:
                     name=name, namespace=namespace, container=container_name,
                     previous=use_previous, tail_lines=80, timestamps=True,
                 )
-                result.append({"container": str(container_name), "source": "previous" if use_previous else "current", "text": str(text)[-4000:]})
+                result.append({"container": str(container_name), "source": "previous" if use_previous else "current", "text": _redact(str(text)[-4000:])})
             except Exception as exc:
                 result.append({"container": str(container_name), "source": "unavailable", "text": f"Could not read logs: {type(exc).__name__}: {exc}"})
         return result

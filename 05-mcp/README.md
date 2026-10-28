@@ -33,3 +33,17 @@ Add a read-only classifier tool, return structured severity, describe required i
 
 ## Interview questions
 What are MCP host/client/server/tools? How does MCP differ from direct REST integration? Why validate tool input? How would you secure a server that can reach production?
+
+## Additional example: read-only synthetic health tool
+
+A second example server is available in [mcp_health_server.py](mcp_health_server.py). It exposes a `get_sample_service_health` tool for synthetic demo records. It does not contact real services.
+
+Install the SDK in your activated virtual environment if you have not already:
+
+```bash
+python -m pip install "mcp[cli]"
+```
+
+Launch it through an MCP-compatible client configured for stdio transport. Like the first server, it may wait silently because stdout is reserved for MCP protocol messages. Do not test it by expecting ordinary terminal output, and do not add print-based logging to the protocol stream.
+
+Try the tool with `jenkins`, `payments-api`, and an unknown service name. The first two return sample statuses; the unknown name returns an explicit unknown status. The server has not been verified against your local MCP client setup, so use the SDK's compatible client configuration for your environment.

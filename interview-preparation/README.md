@@ -49,3 +49,21 @@ Use this structure: problem → constraints → architecture → implementation 
 
 ## Practice task
 Explain how this repository progresses from a keyword-based Python classifier to an LLM-powered agent that uses approved runbooks and read-only MCP tools. Explicitly state which components are currently implemented and which remain future work.
+
+## Additional example: scenario drills
+
+Run from the repository root:
+
+```powershell
+python .\interview-preparation\scenario_drills.py
+```
+
+Linux:
+
+```bash
+python ./interview-preparation/scenario_drills.py
+```
+
+The script prints two interview scenarios and short answer outlines: troubleshooting a Jenkins timeout and explaining why a rule-based classifier is not automatically an AI agent. Practice answering each question aloud in your own words before reviewing the outline.
+
+[Open the scenario-drill code](scenario_drills.py).

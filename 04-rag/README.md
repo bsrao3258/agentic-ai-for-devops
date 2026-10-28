@@ -1,5 +1,8 @@
 # 04 — Retrieval-Augmented Generation (RAG)
 
+![Digital information retrieval and knowledge systems](https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80)
+
+
 ## Why RAG?
 An LLM may not know private runbooks or current procedures. RAG retrieves relevant approved documents and supplies them as context. Retrieval does not guarantee correctness; evaluate relevance and cite sources.
 

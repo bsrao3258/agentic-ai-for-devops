@@ -65,3 +65,17 @@ Expected output:
 ```
 
 This example combines lists, dictionaries, loops, conditions, functions, and arithmetic to summarize sample CI jobs. Change a job status and predict how the totals change.
+
+## Visual: core Python building blocks
+
+Use these building blocks to turn raw log text into a structured result.
+
+```mermaid
+flowchart TD
+    A[Input data] --> B[Variables and data types]
+    B --> C[Conditions and loops]
+    C --> D[Functions]
+    D --> E[Collections and dictionaries]
+    E --> F[Result or report]
+    F --> G[Tests verify behavior]
+```

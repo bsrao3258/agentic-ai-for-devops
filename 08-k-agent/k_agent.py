@@ -59,8 +59,8 @@ def _get(obj: Any, *path: str, default: Any = None) -> Any:
 def _redact(text: str) -> str:
     """Mask common secret patterns before logs are printed or serialized."""
     patterns = [
-        (r"(?i)(authorization\\s*[:=]\\s*bearer\\s+)\\S+", r"\\1[REDACTED]"),
-        (r"(?i)((?:password|passwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token)\\s*[:=]\\s*)[^\\s,;]+", r"\\1[REDACTED]"),
+        (r"(?i)(authorization\s*[:=]\s*bearer\s+)\S+", r"\1[REDACTED]"),
+        (r"(?i)((?:password|passwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token)\s*[:=]\s*)[^\s,;]+", r"\1[REDACTED]"),
         (r"(?i)(AKIA[0-9A-Z]{16})", "[REDACTED_AWS_ACCESS_KEY]"),
     ]
     for pattern, replacement in patterns:

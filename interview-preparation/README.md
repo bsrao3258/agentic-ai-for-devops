@@ -67,3 +67,17 @@ python ./interview-preparation/scenario_drills.py
 The script prints two interview scenarios and short answer outlines: troubleshooting a Jenkins timeout and explaining why a rule-based classifier is not automatically an AI agent. Practice answering each question aloud in your own words before reviewing the outline.
 
 [Open the scenario-drill code](scenario_drills.py).
+
+## Visual: structure a strong scenario answer
+
+Use this structure to give interview answers that are systematic, safe, and evidence-based.
+
+```mermaid
+flowchart TD
+    A[Restate the incident] --> B[Separate evidence from assumptions]
+    B --> C[Choose safe read-only checks]
+    C --> D[Explain likely causes and uncertainty]
+    D --> E[Recommend next step]
+    E --> F[Require approval for state changes]
+    F --> G[Describe validation and audit]
+```

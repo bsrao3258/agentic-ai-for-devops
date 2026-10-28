@@ -68,3 +68,31 @@ Approval required: True
 
 ## Production safety
 Never pipe raw model output into a shell. Never let a model choose arbitrary commands, namespaces, clusters, or credentials. Validate and authorize every action independently of model output. Start read-only and test outside production.
+
+## Additional example: triage multiple log lines
+
+Run from the repository root:
+
+```powershell
+python .\07-devops-ai-project\incident_triage_example.py
+```
+
+Linux:
+
+```bash
+python ./07-devops-ai-project/incident_triage_example.py
+```
+
+Expected output:
+
+```text
+Incident count: 3
+- TIMEOUT: Check network path, DNS, and upstream health.
+- DISK_FULL: Use approved read-only checks to inspect filesystem usage.
+- PERMISSION_DENIED: Verify the service identity and least-privilege permissions.
+Approval required: True
+Execution performed: False
+```
+
+This example processes several sanitized sample log lines and returns recommendations only. It does not execute commands or change infrastructure.
+[Open the example code](incident_triage_example.py).

@@ -1,5 +1,8 @@
 # Interview Preparation — Agentic AI for DevOps
 
+![Professional preparing for a technical interview with a laptop](https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80)
+
+
 Use this as a revision checklist. Practice answers aloud in your own words and connect them to repository code. Do not claim production experience or metrics you have not achieved.
 
 ## Python

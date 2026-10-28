@@ -37,3 +37,27 @@ Return runbook IDs, handle ambiguous matches, chunk a longer document, and creat
 
 ## Interview questions
 What are embeddings? Why chunk documents? RAG versus fine-tuning? How do you evaluate retrieval? How do you defend against prompt injection in retrieved documents?
+
+## Additional example: retrieval with metadata filters
+
+Run from the repository root:
+
+```powershell
+python .\04-rag\metadata_filter_retrieval.py
+```
+
+Linux:
+
+```bash
+python ./04-rag/metadata_filter_retrieval.py
+```
+
+Expected output:
+
+```text
+RB-101 (approved=True): Check DNS, network path, and upstream health.
+```
+
+The example filters out unapproved documents and documents for other services before keyword matching. This is still simple tag/keyword retrieval, not embedding-based vector search.
+
+[Open the example code](metadata_filter_retrieval.py).

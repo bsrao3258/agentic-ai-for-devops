@@ -43,3 +43,21 @@ Add disk-space classification; return structured dictionaries; test approved and
 
 ## Interview questions
 How is an agent different from a rule-based script? What is tool calling? How do you prevent dangerous actions? Why are timeouts and step limits important?
+
+## Additional example: bounded agent loop
+
+Run from the repository root:
+
+```powershell
+python .\03-ai-agents\bounded_agent_loop.py
+```
+
+Linux:
+
+```bash
+python ./03-ai-agents/bounded_agent_loop.py
+```
+
+Expected output is two Python dictionaries. The first identifies `TIMEOUT` and recommends checking network latency and upstream health; the second identifies `DISK_FULL` and recommends an approved read-only filesystem check. Both include `approval_required: True`. This is a deterministic simulation, not an LLM-powered agent or an executor.
+
+[Open the example code](bounded_agent_loop.py).

@@ -1,5 +1,8 @@
 # 03 — Build Your First DevOps Agent
 
+![AI and software automation concept](https://images.unsplash.com/photo-1676299081847-824916de030a?auto=format&fit=crop&w=1400&q=80)
+
+
 ## What is an agent?
 An AI agent typically combines a goal, model-driven reasoning, state/context, and tools that observe or act on an environment. A fixed `if/elif` script is useful groundwork but is not by itself a full LLM-powered agent.
 

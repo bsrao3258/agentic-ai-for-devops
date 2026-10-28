@@ -1,5 +1,8 @@
 # 00 — Local Environment Setup (Python, venv, and VS Code)
 
+![Developer setting up a laptop and development environment](https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80)
+
+
 This guide prepares a local development environment for the Agentic AI for DevOps repository on Windows or Linux. Complete this module before starting the Python exercises.
 
 ## 1. Install prerequisites

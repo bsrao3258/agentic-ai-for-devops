@@ -125,10 +125,11 @@ def classify_workload(kind: str, obj: Any) -> dict[str, Any]:
     for condition in conditions:
         condition_type = _get(condition, "type", default="")
         condition_status = str(_get(condition, "status", default=""))
-        if condition_status == "True" and condition_type in ("ReplicaFailure", "Progressing"):
-            reason = _get(condition, "reason", default=condition_type)
-            if condition_type == "ReplicaFailure" or reason == "ProgressDeadlineExceeded":
-                bad_conditions.append(str(reason))
+        reason = _get(condition, "reason", default=condition_type)
+        if condition_type == "ReplicaFailure" and condition_status == "True":
+            bad_conditions.append(str(reason))
+        elif condition_type == "Progressing" and reason == "ProgressDeadlineExceeded":
+            bad_conditions.append(str(reason))
     healthy = desired == ready and not bad_conditions
     reason = "Ready" if healthy else (bad_conditions[0] if bad_conditions else f"{ready}/{desired} replicas ready")
     return {
@@ -347,7 +348,7 @@ class KAgent:
                     "namespace": _namespace(event),
                     "reason": str(_get(event, "reason", default="Unknown")),
                     "object": str(_get(event, "involved_object", "name", default=_get(event, "regarding", "name", default="unknown"))),
-                    "message": str(_get(event, "message", default=""))[:800],
+                    "message": _redact(str(_get(event, "message", default=""))[:800]),
                     "count": int(_get(event, "count", default=1) or 1),
                 })
         inventory["WarningEvents"] = len(warning_events)

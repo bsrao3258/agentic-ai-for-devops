@@ -1,5 +1,8 @@
 # 05 — Model Context Protocol (MCP)
 
+![Server infrastructure representing connected tools](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80)
+
+
 ## What MCP provides
 MCP is a protocol for exposing tools and other context to compatible AI applications through a standardized client/server interface. It is not an LLM and does not automatically make a tool safe.
 

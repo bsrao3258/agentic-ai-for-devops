@@ -222,3 +222,17 @@ Virtual environment active: False
 ```
 
 Your Python version and operating system will differ. If you run it from the activated project virtual environment, `Virtual environment active` should normally be `True`. This script checks the current interpreter; it does not install or modify anything.
+
+## Visual: local development setup
+
+This diagram shows the setup sequence from installing tools through running tests.
+
+```mermaid
+flowchart TD
+    A[Install Python and Git] --> B[Clone repository]
+    B --> C[Create .venv]
+    C --> D[Activate virtual environment]
+    D --> E[Select .venv in VS Code]
+    E --> F[Run example script]
+    F --> G[Run unit tests]
+```

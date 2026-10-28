@@ -47,3 +47,17 @@ python -m pip install "mcp[cli]"
 Launch it through an MCP-compatible client configured for stdio transport. Like the first server, it may wait silently because stdout is reserved for MCP protocol messages. Do not test it by expecting ordinary terminal output, and do not add print-based logging to the protocol stream.
 
 Try the tool with `jenkins`, `payments-api`, and an unknown service name. The first two return sample statuses; the unknown name returns an explicit unknown status. The server has not been verified against your local MCP client setup, so use the SDK's compatible client configuration for your environment.
+
+## Visual: MCP client and server
+
+MCP standardizes how a client discovers and calls server capabilities; authorization and safe tool design are still required.
+
+```mermaid
+flowchart LR
+    A[AI host application] <--> B[MCP client]
+    B <--> C[MCP server]
+    C --> D[Declared tool schema]
+    D --> E[Validate inputs]
+    E --> F[Run narrow, permitted operation]
+    F --> G[Structured result]
+```

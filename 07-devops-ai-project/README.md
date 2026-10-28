@@ -1,5 +1,8 @@
 # 07 — End-to-End DevOps Troubleshooting Project
 
+![DevOps infrastructure and monitoring concept](https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=1400&q=80)
+
+
 ## Goal
 Build an assistant that analyzes sanitized CI/CD logs, identifies known patterns, explains evidence, consults approved runbooks, recommends safe checks, and requests explicit approval before remediation.
 

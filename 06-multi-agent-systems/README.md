@@ -1,5 +1,8 @@
 # 06 — Multi-Agent Systems
 
+![Team collaborating on a technical project](https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=80)
+
+
 ## Concept
 A multi-agent workflow separates roles such as investigator, runbook researcher, and reviewer. Real agents may use LLMs and tools; separate Python functions are only a simulation of role separation.
 

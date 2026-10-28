@@ -62,3 +62,19 @@ The current examples are primarily educational, deterministic Python examples. A
 ## Suggested learner workflow
 
 For every concept: **read → predict output → run → compare → modify → explain**. Complete the exercises and interview questions before moving on. Always ask for human approval before a system changes infrastructure or production state.
+
+## Additional hands-on examples
+
+Each learning folder now has another focused example alongside its existing starter code:
+
+- [Environment check](00-environment-setup/environment_check.py)
+- [Python DevOps metrics](01-python-fundamentals/devops_metrics_example.py)
+- [Prompt patterns](02-llm-fundamentals/prompt_patterns.py)
+- [Bounded agent loop](03-ai-agents/bounded_agent_loop.py)
+- [RAG metadata filtering](04-rag/metadata_filter_retrieval.py)
+- [MCP synthetic health tool](05-mcp/mcp_health_server.py)
+- [Multi-agent pipeline](06-multi-agent-systems/multi_agent_pipeline_example.py)
+- [Multi-line incident triage](07-devops-ai-project/incident_triage_example.py)
+- [Interview scenario drills](interview-preparation/scenario_drills.py)
+
+Each module README links to its additional example and explains how to run it or what to expect. The MCP server example requires the MCP SDK and an MCP-compatible client; it uses synthetic data and does not contact real infrastructure.

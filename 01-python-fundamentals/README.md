@@ -43,3 +43,25 @@ See [Screenshots and Diagrams](../docs/SCREENSHOTS_AND_DIAGRAMS.md) for the lear
 ## After this module
 
 Continue with [02 — LLM Fundamentals](../02-llm-fundamentals/README.md). Python fundamentals are a prerequisite for understanding agent tools, RAG pipelines, MCP servers, and multi-agent orchestration.
+
+## Additional example: DevOps job metrics
+
+Run from the repository root:
+
+```powershell
+python .\01-python-fundamentals\devops_metrics_example.py
+```
+
+Linux:
+
+```bash
+python ./01-python-fundamentals/devops_metrics_example.py
+```
+
+Expected output:
+
+```text
+{'total': 4, 'passed': 2, 'failed': 2, 'failure_rate_percent': 50.0}
+```
+
+This example combines lists, dictionaries, loops, conditions, functions, and arithmetic to summarize sample CI jobs. Change a job status and predict how the totals change.

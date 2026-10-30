@@ -63,3 +63,10 @@ The demo uses fabricated Kubernetes-shaped dictionaries. It requires no cluster,
 6. Keep all mutations behind an external authenticated approval and policy gate.
 
 **Not implemented here:** live API collection, EndpointSlice support, full owner-chain traversal, timestamp correlation, LLM reasoning, automated remediation, or production audit storage. The code is a focused offline teaching component, not a finished root-cause engine.
+
+
+## Architecture diagram
+
+![Relationship graph architecture](assets/relationship-graph-architecture.svg)
+
+Read the diagram from top to bottom: three input object types feed separate evidence helpers; Service selector matching and Pod readiness analysis are distinct from optional Endpoints summarization; Pod owner references are extracted as one-hop metadata; finally, `build_relationship_report()` composes the evidence. The diagram deliberately labels the output as an investigation aid, not a definitive root-cause result.

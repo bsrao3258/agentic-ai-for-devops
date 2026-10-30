@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">K-Agent relationship_graph.py architecture</title>
+  <desc id="desc">Flow diagram showing how a Service selector is matched against Pods in the same namespace, how readiness and Endpoints are summarized, how Pod owner references are extracted, and how evidence is combined into a read-only relationship report.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101b32"/><stop offset="1" stop-color="#172b45"/></linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0d9488"/></linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#6d28d9"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#020617" flood-opacity=".28"/></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#9fb5d1"/></marker>
+    <style>
+      .h{font:700 31px Arial,sans-serif;fill:#f8fafc}.sub{font:400 16px Arial,sans-serif;fill:#c6d5e8}
+      .head{font:700 19px Arial,sans-serif;fill:#fff}.body{font:400 15px Arial,sans-serif;fill:#e4edf8}.small{font:400 13px Arial,sans-serif;fill:#c3d2e4}
+      .tiny{font:700 12px Arial,sans-serif;fill:#cbd5e1;letter-spacing:1px}.line{stroke:#9fb5d1;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .dash{stroke:#8ba3c1;stroke-width:2;stroke-dasharray:8 7;fill:none}.card{stroke:#8aa3c4;stroke-opacity:.25;stroke-width:1.4}
+    </style>
+  </defs>
+  <rect width="1440" height="920" rx="28" fill="url(#bg)"/>
+  <text x="64" y="70" class="h">Inside relationship_graph.py</text>
+  <text x="64" y="101" class="sub">From Kubernetes objects to a cautious, evidence-based relationship report</text>
+  <rect x="1135" y="48" width="235" height="38" rx="19" fill="#134e4a" stroke="#2dd4bf" stroke-opacity=".6"/>
+  <text x="1252" y="72" text-anchor="middle" class="tiny" fill="#99f6e4">READ-ONLY · OFFLINE HELPERS</text>
+
+  <!-- Inputs -->
+  <g filter="url(#shadow)">
+    <rect x="65" y="155" width="350" height="118" rx="18" fill="url(#blue)" class="card"/>
+    <text x="92" y="190" class="tiny">INPUT 01</text><text x="92" y="222" class="head">Service object</text>
+    <text x="92" y="249" class="body">namespace + spec.selector</text>
+    <rect x="545" y="155" width="350" height="118" rx="18" fill="url(#teal)" class="card"/>
+    <text x="572" y="190" class="tiny">INPUT 02</text><text x="572" y="222" class="head">Pod objects</text>
+    <text x="572" y="249" class="body">namespace + labels + Ready + ownerRefs</text>
+    <rect x="1025" y="155" width="350" height="118" rx="18" fill="url(#purple)" class="card"/>
+    <text x="1052" y="190" class="tiny">OPTIONAL INPUT 03</text><text x="1052" y="222" class="head">Endpoints object</text>
+    <text x="1052" y="249" class="body">addresses + notReadyAddresses</text>
+  </g>
+
+  <!-- Arrows -->
+  <path d="M240 273 V330" class="line"/><path d="M720 273 V330" class="line"/><path d="M1200 273 V330" class="line"/>
+
+  <!-- Main analysis blocks -->
+  <g filter="url(#shadow)">
+    <rect x="65" y="337" width="350" height="170" rx="18" fill="#1e3a5f" class="card"/>
+    <text x="92" y="374" class="tiny">01 · SELECTOR LOGIC</text>
+    <text x="92" y="407" class="head">selector_matches()</text>
+    <text x="92" y="438" class="body">Every selector key/value must</text><text x="92" y="461" class="body">match the Pod labels.</text>
+    <text x="92" y="487" class="small">Empty selector → NO_SELECTOR</text>
+
+    <rect x="545" y="337" width="350" height="170" rx="18" fill="#164e4a" class="card"/>
+    <text x="572" y="374" class="tiny">02 · POD RELATIONSHIP</text>
+    <text x="572" y="407" class="head">service_pod_relationship()</text>
+    <text x="572" y="438" class="body">Filter to the same namespace;</text><text x="572" y="461" class="body">match labels; inspect Ready=True.</text>
+    <text x="572" y="487" class="small">Matched Pods ≠ guaranteed traffic</text>
+
+    <rect x="1025" y="337" width="350" height="170" rx="18" fill="#4c1d95" class="card"/>
+    <text x="1052" y="374" class="tiny">03 · ENDPOINT EVIDENCE</text>
+    <text x="1052" y="407" class="head">endpoint_summary()</text>
+    <text x="1052" y="438" class="body">Count ready and not-ready</text><text x="1052" y="461" class="body">addresses separately.</text>
+    <text x="1052" y="487" class="small">Legacy Endpoints input</text>
+  </g>
+
+  <!-- selector to relationship -->
+  <path d="M415 422 H535" class="line"/>
+  <path d="M895 422 H1015" class="dash"/>
+  <text x="955" y="407" text-anchor="middle" class="tiny">SEPARATE EVIDENCE</text>
+
+  <!-- owner references -->
+  <path d="M720 507 V565" class="line"/>
+  <rect x="545" y="572" width="350" height="105" rx="18" fill="#334155" class="card" filter="url(#shadow)"/>
+  <text x="572" y="608" class="tiny">04 · OWNERSHIP METADATA</text>
+  <text x="572" y="639" class="head">owner_references()</text>
+  <text x="572" y="661" class="small">One hop only · e.g. Pod → ReplicaSet</text>
+
+  <!-- composition -->
+  <path d="M240 507 V716 H480 V754" class="line"/>
+  <path d="M720 677 V744" class="line"/>
+  <path d="M1200 507 V716 H960 V754" class="line"/>
+  <g filter="url(#shadow)">
+    <rect x="390" y="754" width="660" height="110" rx="20" fill="#0f3b57" stroke="#38bdf8" stroke-width="1.6"/>
+    <text x="720" y="790" text-anchor="middle" class="tiny">05 · COMPOSE THE EVIDENCE</text>
+    <text x="720" y="823" text-anchor="middle" class="head">build_relationship_report()</text>
+    <text x="720" y="847" text-anchor="middle" class="small">Service relationship + Pod ownership + optional Endpoints summary</text>
+  </g>
+  <text x="64" y="891" class="small">Output is an investigation aid, not a root-cause verdict. No cluster API calls, LLM calls, or infrastructure changes.</text>
+</svg>

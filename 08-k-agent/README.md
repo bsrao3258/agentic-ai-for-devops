@@ -215,3 +215,12 @@ python -m unittest discover -s 08-k-agent -v
 - The report explicitly warns that selector matches do not prove that application traffic works. EndpointSlices, probes, network policy, and application-level checks still matter.
 
 **Safety and scope:** this module is pure offline analysis. It does not connect to a cluster, fetch resources, infer a definitive root cause, or make changes. It uses synthetic dictionaries in tests. The next integration step is to feed real, read-only API snapshots from K-Agent into these helpers, then correlate timestamps and events. Do not treat this helper as a production diagnosis engine.
+
+
+## Relationship graph architecture diagram
+
+![K-Agent relationship graph architecture](assets/relationship-graph-architecture.svg)
+
+This diagram maps the inputs and helper functions in `relationship_graph.py` to the final evidence report. It also shows the optional Endpoints input and the one-hop-only Pod ownership extraction. The report is read-only evidence, not a root-cause verdict.
+
+See the [relationship graph code walkthrough](RELATIONSHIP_GRAPH_WALKTHROUGH.md) for the function-by-function explanation.

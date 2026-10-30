@@ -97,3 +97,8 @@ Each module README links to its additional example and explains how to run it or
 Explore the [advanced SRE module](09-advanced-sre-agent/README.md), run the [offline incident correlator](09-advanced-sre-agent/incident_correlator.py), and follow its [line-by-line code walkthrough](09-advanced-sre-agent/CODE_WALKTHROUGH.md). This adds an evidence-correlation example and a roadmap for metrics, timelines, runbook retrieval, audit controls, approval-gated remediation, and post-change verification.
 
 **Visuals and project honesty:** photos in the README are externally hosted image links; the architecture diagram above is a local SVG committed in this repository. Advanced SRE integrations are clearly marked as future work until implemented and tested.
+
+
+### K-Agent v2 — relationship evidence (new)
+
+The Kubernetes module now includes an offline relationship-analysis milestone: match Service selectors to Pods in the same namespace, distinguish matched from Ready Pods, summarize Endpoints, and expose one-hop Pod owner references. Start with the [relationship demo](08-k-agent/relationship_demo.py), study the [relationship helper implementation](08-k-agent/relationship_graph.py), and run its [unit tests](08-k-agent/test_relationship_graph.py). These helpers are synthetic/offline today; live Kubernetes API integration and full owner-chain/timeline correlation remain future work.

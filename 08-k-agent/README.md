@@ -187,3 +187,31 @@ Potential next stages: add a dynamic API discovery adapter for selected CRDs; cr
 6. Why must a restart require approval and a follow-up health check?
 7. How should the agent behave when it cannot read a resource because of RBAC?
 8. Why is a deterministic troubleshooting script not yet an LLM-powered agent?
+
+
+## K-Agent v2 learning milestone: relationship evidence
+
+The new `relationship_graph.py` module adds **offline, unit-testable relationship analysis**. It helps answer a more useful question than “is the Pod running?”: “which Pods does this Service select, which of those Pods report Ready, and what ownership metadata do those Pods declare?”
+
+Run the focused example from the repository root:
+
+```bash
+python -c "from sys import path; path.insert(0, '08-k-agent'); from relationship_graph import build_relationship_report; service={'metadata': {'name': 'checkout', 'namespace': 'payments'}, 'spec': {'selector': {'app': 'checkout'}}}; pods=[{'metadata': {'name': 'checkout-a', 'namespace': 'payments', 'labels': {'app': 'checkout'}}, 'status': {'conditions': [{'type': 'Ready', 'status': 'True'}]}}]; print(build_relationship_report(service, pods))"
+```
+
+Run all K-Agent unit tests, including the new relationship tests:
+
+```bash
+python -m unittest discover -s 08-k-agent -v
+```
+
+### What the relationship helpers check
+
+- Service selector keys must all match a Pod's labels; Pods in another namespace are excluded.
+- An empty selector is reported as `NO_SELECTOR`, not treated as “select every Pod.”
+- Matching Pods are separated from Pods whose Ready condition is True.
+- Legacy Endpoints ready and not-ready addresses are summarized separately.
+- Pod ownerReferences are surfaced as **one-hop declared metadata** (for example, a ReplicaSet). This helper does not resolve the full Deployment → ReplicaSet → Pod chain.
+- The report explicitly warns that selector matches do not prove that application traffic works. EndpointSlices, probes, network policy, and application-level checks still matter.
+
+**Safety and scope:** this module is pure offline analysis. It does not connect to a cluster, fetch resources, infer a definitive root cause, or make changes. It uses synthetic dictionaries in tests. The next integration step is to feed real, read-only API snapshots from K-Agent into these helpers, then correlate timestamps and events. Do not treat this helper as a production diagnosis engine.
